@@ -35,8 +35,8 @@ export default class UIScene extends Phaser.Scene {
 
 
     //adding music to scene
-    const mainSong = this.sound.add('mainSong', { volume: .5})
-    const puzzleSong = this.sound.add('puzzleSong', { volume: .5})
+    const mainSong = this.sound.add('mainSong')
+    const puzzleSong = this.sound.add('puzzleSong')
 
     let currentMusic = mainSong
     let muteMusic = false
@@ -161,6 +161,7 @@ export default class UIScene extends Phaser.Scene {
         )
         textBox.setVisible(true).start(levelIntro(), 50)
 
+        currentMusic.stop()
         currentMusic = mainSong
 
         if (muteMusic) {
@@ -179,6 +180,7 @@ export default class UIScene extends Phaser.Scene {
 
     currentGame.events.once('villagerEncounter', function() {
       
+      currentMusic.stop()
       currentMusic = puzzleSong
 
       if (muteMusic) {
@@ -210,6 +212,7 @@ export default class UIScene extends Phaser.Scene {
     currentGame.events.once('puzzleSolved', function() {
       textBox.setVisible(true).start(puzzleSolvedDialog, 50)
 
+      currentMusic.stop()
       currentMusic = mainSong
 
       if (muteMusic) {
