@@ -44,7 +44,7 @@ export default class UIScene extends Phaser.Scene {
 
     const soundButton = this.add.sprite(560, 20, 'sound')
     soundButton.setInteractive({ useHandCursor: true })
-    
+
     soundButton.on('pointerdown', () => {
       muteMusic = !muteMusic
 
@@ -148,7 +148,7 @@ export default class UIScene extends Phaser.Scene {
       10000
     )
 
-    
+
     //launching text box for initial quest and populating inventory bar
     currentGame.events.on(
       'newLevel',
@@ -178,7 +178,7 @@ export default class UIScene extends Phaser.Scene {
       textBox.setVisible(true).start(initialVillagerDialog(currentGame, villager, foodNames), 50)
     }, this)
 
-    currentGame.events.once('villagerEncounter', function() {
+    currentGame.events.on('villagerEncounter', function() {
       
       currentMusic.stop()
       currentMusic = puzzleSong
@@ -209,7 +209,7 @@ export default class UIScene extends Phaser.Scene {
       this
     )
 
-    currentGame.events.once('puzzleSolved', function() {
+    currentGame.events.on('puzzleSolved', function() {
       textBox.setVisible(true).start(puzzleSolvedDialog, 50)
 
       currentMusic.stop()
@@ -402,6 +402,10 @@ const itemFoundDialog = (scene, foodItem, foodNames) => {
 }
 
 const levelCompleteDialog = (scene, foodItem, level, foodNames, levelNums) => {
-  const nextLevel = levelNums[level + 1]
-  return `A ${foodNames[foodItem]}! You've collected all the items needed!  Time to continue your journey to the ${nextLevel} village!!!`
+  if (level < 5) {
+    const nextLevel = levelNums[level + 1]
+    return `A ${foodNames[foodItem]}! You've collected all the items needed!  Time to continue your journey to the ${nextLevel} village!!!`
+  } else {
+    return `A ${foodNames[foodItem]}! Congrats! You've collected all the items needed to pay Lola's ransom!`
+  }
 }
