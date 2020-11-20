@@ -36,7 +36,6 @@ let puzzleContainsSolvedTiles = puzzleData => {
 // Generate a puzzle that is not null and has no solved tiles
 function generatePuzzle(config) {
   let puzzle = sokobanGenerator.generateSokobanLevel(createGeneratorConfig(config))
-
   let foundUsablePuzzle = false
   while (foundUsablePuzzle === false) {
     //if puzzle times out, regenerate
