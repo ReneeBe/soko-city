@@ -38,9 +38,9 @@ export default class UIScene extends Phaser.Scene {
     const mainSong = this.sound.add('mainSong', { volume: .5})
     const puzzleSong = this.sound.add('puzzleSong', { volume: .5})
 
-    let currentMusic = mainSong
+    let playMainSong = true
     let muteMusic = false
-    currentMusic.play({ volume: .5 })
+    mainSong.play({ volume: .5 })
 
     const soundButton = this.add.sprite(560, 20, 'sound')
     soundButton.setInteractive({ useHandCursor: true })
@@ -50,10 +50,15 @@ export default class UIScene extends Phaser.Scene {
 
       if (muteMusic) {
         soundButton.setTexture('mute')
-        currentMusic.setVolume(0)
+        mainSong.setVolume(0)
+        puzzleSong.setVolume(0)
       } else {
         soundButton.setTexture('sound')
-        currentMusic.setVolume(.5)
+        if (playMainSong){
+          mainSong.setVolume(.5)
+        } else {
+          puzzleSong.setVolume(.5)
+        }
       }
     })
 
@@ -161,13 +166,9 @@ export default class UIScene extends Phaser.Scene {
         )
         textBox.setVisible(true).start(levelIntro(), 50)
 
-        currentMusic = mainSong
-
-        if (muteMusic) {
-          currentMusic.play({ volume: 0 })
-        } else {
-          currentMusic.play({ volume: .5 })
-        }
+        let noiseLevel = muteMusic ? 0 : .5;
+        playMainSong = true
+        mainSong.play({ volume: noiseLevel})
       },
       this
     )
@@ -175,17 +176,13 @@ export default class UIScene extends Phaser.Scene {
     //launching text box on villager encounter
     currentGame.events.on('villagerEncounter', function(villager) {
       textBox.setVisible(true).start(initialVillagerDialog(currentGame, villager, foodNames), 50)
-    }, this)
+    }, this);
 
     currentGame.events.once('villagerEncounter', function() {
 
-      currentMusic = puzzleSong
-
-      if (muteMusic) {
-        currentMusic.play({ volume: 0 })
-      } else {
-        currentMusic.play({ volume: .5 })
-      }
+      let noiseLevel = muteMusic ? 0 : 0.5;
+      mainSong.stop();
+      puzzleSong.play({ volume: noiseLevel})
 
     })
 
@@ -210,13 +207,10 @@ export default class UIScene extends Phaser.Scene {
     currentGame.events.once('puzzleSolved', function() {
       textBox.setVisible(true).start(puzzleSolvedDialog, 50)
 
-      currentMusic = mainSong
-
-      if (muteMusic) {
-        currentMusic.play({ volume: 0 })
-      } else {
-        currentMusic.play({ volume: .5 })
-      }
+      // currentMusic = mainSong
+      let noiseLevel = muteMusic ? 0 : .5;
+      puzzleSong.stop()
+      mainSong.play({volume: noiseLevel})
 
     })
 
