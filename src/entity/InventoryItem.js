@@ -1,5 +1,3 @@
-// import 'phaser';
-
 export default class InventoryItem extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey, frame) {
     super(scene, x, y, spriteKey, frame);
