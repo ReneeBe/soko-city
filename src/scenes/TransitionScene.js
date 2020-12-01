@@ -1,4 +1,4 @@
-import 'phaser'
+// import 'phaser'
 
 class TransitionScene extends Phaser.Scene {
   constructor() {

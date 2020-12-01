@@ -1,4 +1,6 @@
-import 'phaser'
+// import 'phaser'
+const negVelocity = -80;
+const posVelocity = 80;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey) {
@@ -15,21 +17,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   updateMovement(cursors) {
     if (cursors.left.isDown) {
-      this.body.setVelocityX(-80)
+      this.body.setVelocityX(negVelocity)
       this.body.setVelocityY(0)
       this.anims.play('left', true)
       this.flipX = true
     } else if (cursors.right.isDown) {
-      this.body.setVelocityX(80)
+      this.body.setVelocityX(posVelocity)
       this.body.setVelocityY(0)
       this.anims.play('right', true)
       this.flipX = false
     } else if (cursors.up.isDown) {
-      this.body.setVelocityY(-80)
+      this.body.setVelocityY(negVelocity)
       this.body.setVelocityX(0)
       this.anims.play('up', true)
     } else if (cursors.down.isDown) {
-      this.body.setVelocityY(80)
+      this.body.setVelocityY(posVelocity)
       this.body.setVelocityX(0)
       this.anims.play('down', true)
     } else {

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './components/app'
 import history from './history'
 import { Router } from 'react-router-dom'
+import 'phaser'
+
 
 ReactDOM.render(
   <Router history={history}>

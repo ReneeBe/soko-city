@@ -1,4 +1,4 @@
-import 'phaser'
+// import 'phaser'
 
 
 class IntroScene extends Phaser.Scene {

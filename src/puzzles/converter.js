@@ -1,4 +1,4 @@
-import 'phaser'
+// import 'phaser'
 
 
 function convertToMapLayers(puzzle) {

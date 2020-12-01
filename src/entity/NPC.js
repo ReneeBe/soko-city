@@ -1,4 +1,4 @@
-import 'phaser';
+// import 'phaser';
 
 export default class NPC extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey, frame) {
