@@ -1,5 +1,4 @@
 import React from 'react'
-// import logo from '../../public/sokocity.png'
 import firebase from 'firebase'
 import { db, storage } from '../config/firebaseConfig'
 import 'firebase/storage'

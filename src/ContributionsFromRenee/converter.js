@@ -1,6 +1,4 @@
 //copied from ./puzzles/converter.js
-import 'phaser'
-
 
 function convertToMapLayers(puzzle) {
    //------------------- Set Up Tile Index Associations ---------------------

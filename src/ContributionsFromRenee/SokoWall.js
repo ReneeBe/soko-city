@@ -1,5 +1,4 @@
 //copied from ./entity/SokoWall.js
-import 'phaser';
 
 export default class SokoWall extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey) {

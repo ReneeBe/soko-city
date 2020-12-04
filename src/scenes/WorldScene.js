@@ -1,4 +1,3 @@
-// import 'phaser'
 import Player from '../entity/Player'
 import InventoryItem from '../entity/InventoryItem'
 import { setLevelConfig } from '../entity/utilityFunctions'

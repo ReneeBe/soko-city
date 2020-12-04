@@ -1,5 +1,4 @@
 //copied from ./entity/SokoGoal.js
-import 'phaser';
 
 export default class SokoGoal extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey) {

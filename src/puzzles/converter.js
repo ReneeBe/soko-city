@@ -1,5 +1,3 @@
-// import 'phaser'
-
 
 function convertToMapLayers(puzzle) {
    //------------------- Set Up Tile Index Associations ---------------------

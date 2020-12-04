@@ -1,5 +1,7 @@
 //copied from ./entity/SokoBox.js
-import 'phaser';
+
+const negativeVelocity = -80;
+const positiveVelocity = 80;
 
 export default class SokoBox extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, spriteKey) {
@@ -17,22 +19,22 @@ export default class SokoBox extends Phaser.Physics.Arcade.Sprite {
   updateMovement() {
     if (this.body.touching.right) {
       this.body.setImmovable(false)
-      this.body.setVelocityX(-80)
+      this.body.setVelocityX(negativeVelocity)
       this.body.setVelocityY(0)
       this.body.setBounce(0)
     } else if (this.body.touching.left) {
       this.body.setImmovable(false)
-      this.body.setVelocityX(80)
+      this.body.setVelocityX(positiveVelocity)
       this.body.setVelocityY(0)
       this.body.setBounce(0)
     } else if (this.body.touching.down) {
       this.body.setImmovable(false)
-      this.body.setVelocityY(-80)
+      this.body.setVelocityY(negativeVelocity)
       this.body.setVelocityX(0)
       this.body.setBounce(0)
     } else if (this.body.touching.up) {
       this.body.setImmovable(false)
-      this.body.setVelocityY(80)
+      this.body.setVelocityY(positiveVelocity)
       this.body.setVelocityX(0)
       this.body.setBounce(0)
     } else if (this.body.touching.up && this.body.touching.down) {
@@ -57,6 +59,4 @@ export default class SokoBox extends Phaser.Physics.Arcade.Sprite {
       this.body.setBounce(0)
     }
   }
-
 }
-
