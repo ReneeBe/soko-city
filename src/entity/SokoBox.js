@@ -8,53 +8,37 @@ export default class SokoBox extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.world.enable(this);
     this.scene.events.on('update', this.update, this)
-  } 
+  }
+  
+  helperForUpdateMovement(movability, velocityX, velocityY){
+    this.body.setImmovable(movability)
+    this.body.setVelocityX(velocityX)
+    this.body.setVelocityY(velocityY)
+    this.body.setBounce(0)
+  }
 
   update() {
     this.updateMovement()
   }
 
+
   updateMovement() {
-    if (this.body.touching.right) {
-      this.body.setImmovable(false)
-      this.body.setVelocityX(negativeVelocity)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
-    } else if (this.body.touching.left) {
-      this.body.setImmovable(false)
-      this.body.setVelocityX(positiveVelocity)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
-    } else if (this.body.touching.down) {
-      this.body.setImmovable(false)
-      this.body.setVelocityY(negativeVelocity)
-      this.body.setVelocityX(0)
-      this.body.setBounce(0)
-    } else if (this.body.touching.up) {
-      this.body.setImmovable(false)
-      this.body.setVelocityY(positiveVelocity)
-      this.body.setVelocityX(0)
-      this.body.setBounce(0)
-    } else if (this.body.touching.up && this.body.touching.down) {
-      this.body.setImmovable(true)
-      this.body.setVelocityX(0)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
+    if (this.body.touching.up && this.body.touching.down) {
+      this.helperForUpdateMovement(true, 0, 0)
     } else if (this.body.touching.left && this.body.touching.right) {
-      this.body.setImmovable(true)
-      this.body.setVelocityX(0)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
+      this.helperForUpdateMovement(true, 0, 0)
     } else if (this.body.touching.left && this.body.touching.right && this.body.touching.up && this.body.touching.down) {
-      this.body.setImmovable(true)
-      this.body.setVelocityX(0)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
+      this.helperForUpdateMovement(true, 0, 0)
+    } else if (this.body.touching.right) {
+      this.helperForUpdateMovement(false, negativeVelocity, 0)
+    } else if (this.body.touching.left) {
+      this.helperForUpdateMovement(false, positiveVelocity, 0)
+    } else if (this.body.touching.down) {
+      this.helperForUpdateMovement(false, 0, negativeVelocity)
+    } else if (this.body.touching.up) {
+      this.helperForUpdateMovement(false, 0, positiveVelocity)
     } else {
-      this.body.setImmovable(true)
-      this.body.setVelocityX(0)
-      this.body.setVelocityY(0)
-      this.body.setBounce(0)
+      this.helperForUpdateMovement(true, 0, 0)
     }
   }
 }
