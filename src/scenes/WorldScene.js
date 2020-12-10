@@ -5,11 +5,11 @@ import NPC from '../entity/NPC'
 import SokoBox from '../entity/SokoBox'
 import SokoGoal from '../entity/SokoGoal'
 import SokoWall from '../entity/SokoWall'
-
 import firebase from 'firebase'
+
 import { saveLevelProgression, endGame } from '../server/db'
 import { createAnims } from './worldSceneUtilityFunctions/createAnimations'
-import { createSokoBoxSprite, createSokoGoalSprite, createSokoWallSprite } from './worldSceneUtilityFunctions/createPuzzleSprites'
+import { createPuzzleSprites } from './worldSceneUtilityFunctions/createPuzzleSprites'
 
 let groundLayer
 let objectLayer
@@ -72,7 +72,9 @@ export default class WorldScene extends Phaser.Scene {
     // Otherwise, it will keep searching for a good spot
     this.randomizePlayerSpawn(2, 2)
 
-    this.inventoryItems = this.physics.add.group({ classType: InventoryItem })
+    this.inventoryItems = this.physics.add.group({
+      classType: InventoryItem
+    })
 
     //creating random villagers
     this.villagers = this.physics.add.group({ classType: NPC, immovable: true })
@@ -95,10 +97,11 @@ export default class WorldScene extends Phaser.Scene {
     this.sokoGoals = this.physics.add.group({ classType: SokoGoal })
     this.sokoWalls = this.physics.add.group({ classType: SokoWall, immovable: true })
 
-    //Creating sokoBoxes, sokoGoals, and sokoWalls for puzzle
-    createSokoBoxSprite(this.sokoBoxes, this)
-    createSokoGoalSprite(this.sokoGoals, this)
-    createSokoWallSprite(this.sokoWalls, this)
+    //utility function for creating sokoBoxes, sokoGoals, and sokoWalls for puzzle
+    // createSokoBoxSprite(this.sokoBoxes, this)
+    // createSokoGoalSprite(this.sokoGoals, this)
+    // createSokoWallSprite(this.sokoWalls, this)
+    createPuzzleSprites(this.sokoBoxes, this.sokoGoals, this.sokoWalls, this)
 
     // Setting our world bounds
     this.physics.world.bounds.width = map.widthInPixels
@@ -214,12 +217,12 @@ export default class WorldScene extends Phaser.Scene {
 
   randomizeNPCs(group, levelConfig) {
     let unique = []
+
     while (unique.length < levelConfig.NPC) {
       let x =
         (levelConfig.puzzleOptions.width - 4) * 16 + levelConfig.puzzleOptions.x
       let y =
-        (levelConfig.puzzleOptions.height + 0.5) * 16 +
-        levelConfig.puzzleOptions.y
+        (levelConfig.puzzleOptions.height + 0.5) * 16 + levelConfig.puzzleOptions.y
       let frame = Phaser.Math.RND.between(0, 8)
 
       if (unique.indexOf(frame) === -1) {
