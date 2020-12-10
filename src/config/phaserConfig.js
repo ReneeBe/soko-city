@@ -3,6 +3,7 @@ const phaserConfig = {
   width: 320 * 2,
   height: 240 * 2,
   parent: 'phaser-game',
+  // scene: [{preload, create}, WSPreloader, MainScene],
   // zoom: 3,
   pixelArt: true,
   physics: {

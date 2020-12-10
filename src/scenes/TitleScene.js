@@ -1,4 +1,3 @@
-// import 'phaser'
 import firebase from 'firebase'
 import { db } from '../config/firebaseConfig'
 import { setLevelConfig } from '../entity/utilityFunctions'

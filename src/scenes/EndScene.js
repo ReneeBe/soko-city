@@ -1,4 +1,3 @@
-// import 'phaser'
 import firebase from 'firebase'
 import { restartGame } from '../server/db'
 

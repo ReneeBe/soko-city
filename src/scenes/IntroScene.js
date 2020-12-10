@@ -1,6 +1,3 @@
-// import 'phaser'
-
-
 class IntroScene extends Phaser.Scene {
   constructor() {
     super('IntroScene')

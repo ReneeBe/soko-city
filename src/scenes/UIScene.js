@@ -33,7 +33,6 @@ export default class UIScene extends Phaser.Scene {
     //pulling information from World Scene
     const currentGame = this.scene.get('WorldScene')
 
-
     //adding music to scene
     const mainSong = this.sound.add('mainSong', { volume: .5})
     const puzzleSong = this.sound.add('puzzleSong', { volume: .5})
@@ -61,7 +60,6 @@ export default class UIScene extends Phaser.Scene {
         }
       }
     })
-
 
 
     //adding a reset button

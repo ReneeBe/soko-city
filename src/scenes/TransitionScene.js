@@ -1,5 +1,3 @@
-// import 'phaser'
-
 class TransitionScene extends Phaser.Scene {
   constructor() {
     super('TransitionScene');
