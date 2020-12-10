@@ -61,6 +61,7 @@ export default class UIScene extends Phaser.Scene {
       const resetButton = this.add.image(600, 20, 'reset').setScale(.17)
       resetButton.setInteractive({ useHandCursor: true })
       resetButton.on('pointerdown', () => {
+        currentMusic.stop();
         currentGame.events.off('update')
         currentGame.levelConfig.itemsAcquired = []
         currentGame.scene.restart()
@@ -176,7 +177,7 @@ export default class UIScene extends Phaser.Scene {
       }, this)
   
       currentGame.events.once('villagerEncounter', function() {
-  
+        currentMusic.stop();
         currentMusic = puzzleSong
   
         if (muteMusic) {
@@ -207,7 +208,8 @@ export default class UIScene extends Phaser.Scene {
   
       currentGame.events.once('puzzleSolved', function() {
         textBox.setVisible(true).start(puzzleSolvedDialog, 50)
-  
+         
+        currentMusic.stop()
         currentMusic = mainSong
   
         if (muteMusic) {
