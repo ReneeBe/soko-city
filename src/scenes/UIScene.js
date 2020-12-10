@@ -185,7 +185,6 @@ export default class UIScene extends Phaser.Scene {
         } else {
           currentMusic.play({ volume: .5 })
         }
-  
       })
   
   
